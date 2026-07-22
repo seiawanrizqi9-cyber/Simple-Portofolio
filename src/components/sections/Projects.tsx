@@ -2,7 +2,7 @@ import { portfolioData } from "../../data/portfolio";
 
 export default function Projects() {
   return (
-    <section id="projects" className="mb-16 scroll-mt-16 md:mb-24 lg:mb-36 lg:scroll-mt-24">
+    <section id="projects" className="scroll-mt-16 lg:scroll-mt-24">
       <h2 className="text-xl font-bold tracking-tight text-slate-900 dark:text-slate-200 mb-6">
         Projects
       </h2>
@@ -35,6 +35,20 @@ export default function Projects() {
             </div>
           </div>
         ))}
+      </div>
+
+      <div className="mt-12 text-sm text-slate-600 dark:text-slate-400">
+        <p>
+          Want to know more? Check out my{" "}
+          <a
+            href="https://personal-portofolio-flax-tau.vercel.app/"
+            target="_blank"
+            rel="noreferrer"
+            className="font-medium text-slate-900 dark:text-slate-200 hover:text-blue-600 dark:hover:text-blue-400 underline underline-offset-2"
+          >
+            Full Portfolio
+          </a>
+        </p>
       </div>
     </section>
   );
