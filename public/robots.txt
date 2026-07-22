@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://rizqisetiawan-portofolio.vercel.app/sitemap.xml
