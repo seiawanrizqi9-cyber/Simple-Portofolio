@@ -1,0 +1,41 @@
+import { portfolioData } from "../../data/portfolio";
+
+export default function Projects() {
+  return (
+    <section id="projects" className="mb-16 scroll-mt-16 md:mb-24 lg:mb-36 lg:scroll-mt-24">
+      <h2 className="text-sm font-bold tracking-widest text-slate-900 uppercase lg:hidden mb-4">
+        Projects
+      </h2>
+      <div className="flex flex-col gap-8">
+        {portfolioData.projects.map((project, idx) => (
+          <div key={idx} className="group relative grid pb-1 transition-all sm:grid-cols-8 sm:gap-8 md:gap-4 lg:hover:!opacity-100 lg:hover:bg-slate-50/50 lg:p-4 rounded-xl">
+            <div className="z-10 sm:col-span-8">
+              <h3 className="font-medium leading-snug text-slate-900 mb-2">
+                <a
+                  className="inline-flex items-baseline font-medium leading-tight text-slate-900 hover:text-blue-600 focus-visible:text-blue-600 group/link text-base"
+                  href={project.link}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <span>{project.title}</span>
+                </a>
+              </h3>
+              <p className="mt-2 text-sm leading-normal text-slate-600">
+                {project.description}
+              </p>
+              <ul className="mt-4 flex flex-wrap gap-2">
+                {project.technologies.map((tech, tIdx) => (
+                  <li key={tIdx}>
+                    <div className="flex items-center rounded-full bg-indigo-50 px-3 py-1 text-xs font-medium text-indigo-600">
+                      {tech}
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
