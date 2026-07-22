@@ -3,6 +3,7 @@ import About from "../sections/About";
 import Skills from "../sections/Skills";
 import Projects from "../sections/Projects";
 import Footer from "./Footer";
+import ThemeToggle from "../ThemeToggle";
 import logo from "../../assets/letter-r.png";
 
 export default function MainLayout() {
@@ -13,14 +14,17 @@ export default function MainLayout() {
         {/* Left Side (Sticky) */}
         <header className="lg:sticky lg:top-0 lg:flex lg:max-h-screen lg:w-[48%] lg:flex-col lg:justify-between lg:py-24">
           <div>
-            <img className="w-24 h-24 rounded-full mb-6 ring-2 ring-slate-200" src={logo} alt="Rizqi Logo" />
-            <h1 className="text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl">
+            <div className="flex items-center justify-between mb-6">
+              <img className="w-24 h-24 rounded-full ring-2 ring-slate-200 dark:ring-slate-700" src={logo} alt="Rizqi Logo" />
+              <ThemeToggle />
+            </div>
+            <h1 className="text-4xl font-bold tracking-tight text-slate-900 dark:text-slate-100 sm:text-5xl">
               {portfolioData.bio.name}
             </h1>
-            <h2 className="mt-3 text-lg font-medium tracking-tight text-slate-700 sm:text-xl">
+            <h2 className="mt-3 text-lg font-medium tracking-tight text-slate-700 dark:text-slate-300 sm:text-xl">
               {portfolioData.bio.role}
             </h2>
-            <p className="mt-4 max-w-xs leading-normal text-slate-500">
+            <p className="mt-4 max-w-xs leading-normal text-slate-500 dark:text-slate-400">
               {portfolioData.bio.description}
             </p>
           </div>
