@@ -2,7 +2,7 @@ import { portfolioData } from "../../data/portfolio";
 
 export default function Skills() {
   return (
-    <section id="skills" className="mb-16 scroll-mt-16 md:mb-24 lg:mb-36 lg:scroll-mt-24">
+    <section id="skills" className="mb-12 scroll-mt-16 lg:mb-20 lg:scroll-mt-24">
       <h2 className="text-xl font-bold tracking-tight text-slate-900 dark:text-slate-200 mb-6">
         Tech Stack
       </h2>
