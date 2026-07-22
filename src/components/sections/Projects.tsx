@@ -42,7 +42,7 @@ export default function Projects() {
         <p>
           Want to know more? Check out my{" "}
           <a
-            href="https://personal-portofolio-flax-tau.vercel.app/"
+            href="https://rizqisetiawan-portofolio.vercel.app/"
             target="_blank"
             rel="noreferrer"
             className="font-medium text-slate-900 dark:text-slate-200 hover:text-blue-600 dark:hover:text-blue-400 underline underline-offset-2"
