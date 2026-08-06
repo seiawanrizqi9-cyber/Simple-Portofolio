@@ -1,23 +1,26 @@
-@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700;800&family=Geist:wght@300;400;500;600;700&display=swap');
 @import "tailwindcss";
 
 @theme {
   /* Colors */
-  --color-background: #131313;
-  --color-surface: #131313;
+  --color-primary: #6366F1;
+  --color-on-primary: #FFFFFF;
+  --color-background: #09090B;
+  --color-surface: #18181B;
+  --color-on-surface: #E4E4E7;
+  --color-outline: #27272A;
+  --color-secondary: #A1A1AA;
+  --color-surface-bright: #27272A;
+
+  /* Legacy Colors for backward compatibility with other components */
   --color-surface-low: #1c1b1b;
   --color-surface-container: #201f1f;
   --color-surface-high: #2a2a2a;
   --color-surface-highest: #353534;
-
   --color-text-primary: #e5e2e1;
   --color-text-secondary: #c7c4d7;
   --color-muted-foreground: #c7c4d7;
-
   --color-border: #464554;
-
-  --color-primary: #c0c1ff;
-  --color-secondary: #4cd7f6;
   --color-tertiary: #ffb783;
 
   /* Radius */
@@ -27,8 +30,10 @@
   --radius-xl: 24px;
 
   /* Fonts */
-  --font-sans: "Plus Jakarta Sans", sans-serif;
-  --font-heading: "Bricolage Grotesque", sans-serif;
+  --font-sans: "Inter", sans-serif;
+  --font-heading: "Inter", sans-serif;
+  --font-mono: "Geist", monospace;
+  --font-legacy: "Plus Jakarta Sans", sans-serif;
 }
 
 :root {
@@ -49,5 +54,67 @@ body {
 @variant dark (&:where(.dark, .dark *));
 
 .dark body {
-  @apply bg-slate-950 text-slate-200;
+  @apply bg-background text-on-surface;
+}
+
+/* Animations & Badge Interaction Styles */
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes text-reveal {
+  from { clip-path: inset(0 100% 0 0); }
+  to { clip-path: inset(0 0 0 0); }
+}
+
+.animate-fade-up { animation: fade-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+.animate-text-reveal { animation: text-reveal 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+
+.delay-1 { animation-delay: 0.1s; }
+.delay-2 { animation-delay: 0.2s; }
+.delay-3 { animation-delay: 0.3s; }
+.delay-4 { animation-delay: 0.4s; }
+
+#badge-container {
+  perspective: 1000px;
+  cursor: grab;
+  user-select: none;
+  touch-action: none;
+}
+#badge-container:active { cursor: grabbing; }
+
+#badge-pivot {
+  transform-origin: top center;
+  transition: transform 0.1s ease-out;
+  will-change: transform;
+}
+
+#lanyard {
+  stroke: #A1A1AA; /* lighter stroke for light mode */
+  stroke-width: 4;
+  fill: none;
+  transition: stroke 0.3s ease;
+}
+.dark #lanyard { stroke: #3F3F46; }
+
+.badge-shadow {
+  filter: drop-shadow(0 20px 30px rgba(0,0,0,0.3));
+}
+
+.hover-underline {
+  position: relative;
+}
+.hover-underline::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 1px;
+  bottom: -2px;
+  left: 0;
+  background-color: currentColor;
+  transition: width 0.3s ease;
+}
+.hover-underline:hover::after {
+  width: 100%;
 }

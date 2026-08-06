@@ -11,45 +11,18 @@ export default function Projects() {
       </h2>
       <div className="flex flex-col gap-8">
         {portfolioData.projects.map((project, idx) => (
-          <div key={idx} className="group relative grid pb-1 transition-all sm:grid-cols-8 sm:gap-8 md:gap-4 lg:hover:!opacity-100 lg:hover:bg-slate-50/50 dark:lg:hover:bg-slate-800/50 lg:p-4 rounded-xl">
-            <div className="z-10 sm:col-span-8">
-              <h3 className="font-medium leading-snug text-slate-900 dark:text-slate-200 mb-2">
-                <button
-                  onClick={() => setShowModal(true)}
-                  className="inline-flex items-baseline font-medium leading-tight text-slate-900 dark:text-slate-200 hover:text-blue-600 dark:hover:text-blue-400 focus-visible:text-blue-600 group/link text-base text-left"
-                >
-                  <span>{project.title}</span>
-                </button>
-              </h3>
-              <p className="mt-2 text-sm leading-normal text-slate-600 dark:text-slate-400">
-                {project.description}
-              </p>
-              <ul className="mt-4 flex flex-wrap gap-2">
-                {project.technologies.map((tech, tIdx) => (
-                  <li key={tIdx}>
-                    <div className="flex items-center rounded-full bg-indigo-50 dark:bg-indigo-500/20 px-3 py-1 text-xs font-medium text-indigo-600 dark:text-indigo-200">
-                      {tech}
-                    </div>
-                  </li>
-                ))}
-              </ul>
-            </div>
+          <div key={idx} className="group relative transition-all lg:hover:!opacity-100 lg:hover:bg-slate-50/50 dark:lg:hover:bg-slate-800/50 lg:p-4 rounded-xl border border-transparent dark:hover:border-slate-700/50">
+            <h3 className="font-medium leading-snug text-slate-900 dark:text-slate-200">
+              <button
+                onClick={() => setShowModal(true)}
+                className="inline-flex items-center gap-2 font-medium leading-tight text-slate-900 dark:text-slate-200 hover:text-primary focus-visible:text-primary group/link text-base text-left"
+              >
+                <span className="material-symbols-outlined text-sm opacity-50 group-hover:opacity-100 transition-opacity">folder</span>
+                <span>{project.title}</span>
+              </button>
+            </h3>
           </div>
         ))}
-      </div>
-
-      <div className="mt-12 text-sm text-slate-600 dark:text-slate-400">
-        <p>
-          Want to know more? Check out my{" "}
-          <a
-            href="https://rizqisetiawan-portofolio.vercel.app/"
-            target="_blank"
-            rel="noreferrer"
-            className="font-medium text-slate-900 dark:text-slate-200 hover:text-blue-600 dark:hover:text-blue-400 underline underline-offset-2"
-          >
-            Full Portfolio
-          </a>
-        </p>
       </div>
 
       {showModal && (

@@ -1,106 +1,114 @@
 import { portfolioData } from "../../data/portfolio";
-import About from "../sections/About";
 import Skills from "../sections/Skills";
-import Projects from "../sections/Projects";
 import Footer from "./Footer";
 import ThemeToggle from "../ThemeToggle";
-import logo from "../../assets/letter-r.png";
+import BadgeInteraction from "../ui/BadgeInteraction";
 
 export default function MainLayout() {
   return (
-    <div className="mx-auto min-h-screen max-w-screen-xl px-6 py-12 font-sans md:px-12 md:py-20 lg:px-24 lg:py-0">
-      <div className="lg:flex lg:justify-between lg:gap-4">
-        {/* Left Side (Sticky) */}
-        <header className="lg:sticky lg:top-0 lg:flex lg:max-h-screen lg:w-[48%] lg:flex-col lg:py-24">
-          <div className="flex flex-col gap-12 lg:gap-5">
-            <div>
-              <div className="flex items-center justify-between mb-6">
-                <img
-                  className="w-24 h-24 rounded-full ring-2 ring-slate-200 dark:ring-slate-700"
-                  src={logo}
-                  alt="Rizqi Logo"
-                />
-                <ThemeToggle />
-              </div>
-              <h1 className="text-4xl font-bold tracking-tight text-slate-900 dark:text-slate-100 sm:text-5xl">
-                {portfolioData.bio.name}
-              </h1>
-              <h2 className="mt-3 text-lg font-medium tracking-tight text-slate-700 dark:text-slate-300 sm:text-xl">
-                {portfolioData.bio.role}
-              </h2>
-              <p className="mt-4 max-w-xs leading-normal text-slate-500 dark:text-slate-400">
-                {portfolioData.bio.description}
-              </p>
+    <div className="relative min-h-screen w-full flex flex-col font-sans transition-colors duration-500 bg-slate-50 dark:bg-background text-slate-900 dark:text-on-surface">
+      {/* Atmospheric Background */}
+      <div className="fixed inset-0 z-0 pointer-events-none opacity-40">
+        <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-indigo-500/20 dark:bg-primary/20 blur-[120px] rounded-full"></div>
+        <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-blue-500/10 dark:bg-indigo-900/10 blur-[100px] rounded-full"></div>
+      </div>
+
+      {/* Header / Toggle */}
+      <header className="absolute top-8 right-8 z-50 flex items-center gap-6">
+        <ThemeToggle />
+      </header>
+
+      {/* Main Split Layout */}
+      <main className="relative z-10 w-full flex flex-col md:flex-row px-6 md:px-16 lg:px-32">
+        {/* LEFT SIDE: Badge (Sticky) - 40% */}
+        <section className="w-full md:w-[40%] flex flex-col md:sticky md:top-0 md:h-screen justify-center py-20 md:py-0">
+          <div className="animate-fade-up flex flex-col items-center lg:items-start w-full">
+            {/* Interactive Badge */}
+            <div className="w-full flex justify-center lg:justify-start">
+              <BadgeInteraction />
             </div>
 
-            <div className="flex flex-col gap-6 lg:gap-10">
-              <div className="flex gap-5">
+            <p className="text-lg text-slate-900 dark:text-secondary max-w-sm leading-relaxed mb-4 mt-0 text-center lg:text-left">
+              {portfolioData.bio.description}
+            </p>
+
+            <div className="flex flex-wrap gap-3 justify-center lg:justify-start">
+              <a
+                href="https://rizqisetiawan-portofolio.vercel.app/"
+                target="_blank"
+                rel="noreferrer"
+                className="px-5 py-2.5 text-sm bg-primary text-white font-bold rounded-lg hover:translate-y-[-2px] hover:shadow-lg hover:shadow-primary/20 transition-all active:scale-95 group flex items-center gap-2"
+              >
+                View Portfolio
+                <span className="material-symbols-outlined text-sm group-hover:translate-x-1 transition-transform">
+                  arrow_forward
+                </span>
+              </a>
+              <button className="px-5 py-2.5 text-sm bg-white dark:bg-surface border border-slate-200 dark:border-outline text-slate-900 dark:text-on-surface font-bold rounded-lg hover:bg-slate-50 dark:hover:bg-surface-bright transition-colors active:scale-95">
+                Download CV
+              </button>
+            </div>
+          </div>
+        </section>
+
+        {/* RIGHT SIDE: Content (Scrollable) - 60% */}
+        <section className="w-full md:w-[60%] flex flex-col pl-0 md:pl-16 lg:pl-24 pt-12 pb-2 md:pt-24 md:pb-4">
+          <div className="w-full max-w-2xl space-y-12 animate-fade-up delay-2">
+            {/* About Me */}
+            <div>
+              <h3 className="text-xl font-bold tracking-tight text-slate-900 dark:text-slate-200 mb-5">
+                About Me
+              </h3>
+              <div className="space-y-4 text-slate-900 dark:text-secondary leading-relaxed text-lg">
+                <p>{portfolioData.about}</p>
+              </div>
+            </div>
+
+            {/* Skills */}
+            <div className="w-full">
+              <Skills />
+            </div>
+
+            {/* Connect & Footer */}
+            <div className="pt-0 border-t border-outline/50">
+              <h3 className="text-xl font-bold tracking-tight text-slate-900 dark:text-slate-200 mb-6">
+                Connect
+              </h3>
+              <div className="flex flex-wrap gap-8 mb-6">
                 <a
+                  className="group flex items-center gap-2 text-slate-500 dark:text-secondary hover:text-slate-900 dark:hover:text-on-surface transition-colors hover-underline"
                   href={portfolioData.bio.socials.github}
                   target="_blank"
                   rel="noreferrer"
-                  className="text-slate-400 hover:text-slate-900 dark:text-slate-300 dark:hover:text-slate-50 transition-colors"
                 >
-                  <span className="sr-only">GitHub</span>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-6 w-6"
-                    fill="currentColor"
-                    viewBox="0 0 24 24"
-                    aria-hidden="true"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
+                  <span className="material-symbols-outlined">terminal</span>
+                  <span className="font-medium">GitHub</span>
                 </a>
                 <a
+                  className="group flex items-center gap-2 text-slate-500 dark:text-secondary hover:text-slate-900 dark:hover:text-on-surface transition-colors hover-underline"
                   href={portfolioData.bio.socials.linkedin}
                   target="_blank"
                   rel="noreferrer"
-                  className="text-slate-400 hover:text-blue-700 transition-colors"
                 >
-                  <span className="sr-only">LinkedIn</span>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-6 w-6"
-                    fill="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
-                  </svg>
+                  <span className="material-symbols-outlined">share</span>
+                  <span className="font-medium">LinkedIn</span>
                 </a>
                 <a
+                  className="group flex items-center gap-2 text-slate-500 dark:text-secondary hover:text-slate-900 dark:hover:text-on-surface transition-colors hover-underline"
                   href={portfolioData.bio.socials.email}
-                  className="text-slate-400 hover:text-red-500 transition-colors"
                 >
-                  <span className="sr-only">Email</span>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-6 w-6"
-                    fill="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path d="M12 12.713l-11.985-9.713h23.97l-11.985 9.713zm0 2.574l-12-9.725v15.438h24v-15.438l-12 9.725z" />
-                  </svg>
+                  <span className="material-symbols-outlined">
+                    alternate_email
+                  </span>
+                  <span className="font-medium">Email</span>
                 </a>
               </div>
-              <div>
-                <Footer />
-              </div>
+
+              <Footer />
             </div>
           </div>
-        </header>
-
-        {/* Right Side (Scrollable) */}
-        <main className="pt-24 lg:w-[52%] lg:pt-24 lg:pb-12">
-          <About />
-          <Skills />
-          <Projects />
-        </main>
-      </div>
+        </section>
+      </main>
     </div>
   );
 }
